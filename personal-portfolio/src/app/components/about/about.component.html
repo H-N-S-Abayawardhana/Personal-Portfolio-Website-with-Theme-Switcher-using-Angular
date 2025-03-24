@@ -1,1 +1,45 @@
-<p>about works!</p>
+<!-- src/app/components/about/about.component.html -->
+<div class="container">
+    <section class="about-section">
+      <h1 class="section-title">About Me</h1>
+      <div class="about-content">
+        <div class="profile-image">
+          <!-- Replace with your image -->
+          <img src="assets/profile-placeholder.jpg" alt="Profile Photo">
+        </div>
+        <div class="about-text">
+          <p>{{aboutMe}}</p>
+          <div class="about-actions">
+            <a href="assets/resume.pdf" download class="btn">Download CV</a>
+            <a routerLink="/contact" class="btn secondary">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="experience-section">
+      <h2 class="section-title">Work Experience</h2>
+      <div class="timeline">
+        <div *ngFor="let exp of experiences" class="timeline-item">
+          <div class="timeline-content card">
+            <h3>{{exp.title}} <span class="company">@ {{exp.company}}</span></h3>
+            <p class="period">{{exp.period}}</p>
+            <p class="description">{{exp.description}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="education-section">
+      <h2 class="section-title">Education</h2>
+      <div class="timeline">
+        <div *ngFor="let edu of education" class="timeline-item">
+          <div class="timeline-content card">
+            <h3>{{edu.degree}} <span class="company">@ {{edu.institution}}</span></h3>
+            <p class="period">{{edu.period}}</p>
+            <p class="description">{{edu.description}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>

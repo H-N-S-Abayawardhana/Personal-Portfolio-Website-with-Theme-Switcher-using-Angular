@@ -1,1 +1,30 @@
-<p>home works!</p>
+<!-- src/app/components/home/home.component.html -->
+<section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Hi, I'm <span class="highlight">{{name}}</span></h1>
+        <h2>{{title}}</h2>
+        <p>{{description}}</p>
+        <div class="cta-buttons">
+          <a routerLink="/projects" class="btn">View My Work</a>
+          <a routerLink="/contact" class="btn secondary">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-skills">
+        <h3>My Skills</h3>
+        <div class="skills-container">
+          <div *ngFor="let skill of skills" class="skill-tag">{{skill}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="featured">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="featured-projects">
+        <!-- This will be populated from the projects component -->
+        <p>Check out my <a routerLink="/projects">projects page</a> to see my work!</p>
+      </div>
+    </div>
+  </section>

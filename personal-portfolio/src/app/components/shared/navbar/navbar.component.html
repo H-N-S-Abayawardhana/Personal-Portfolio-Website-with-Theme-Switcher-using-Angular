@@ -1,1 +1,29 @@
-<p>navbar works!</p>
+<!-- src/app/components/shared/navbar/navbar.component.html -->
+<nav>
+    <div class="nav-container">
+      <div class="logo">
+        <a routerLink="/">Portfolio</a>
+      </div>
+      <div class="nav-links">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a routerLink="/about" routerLinkActive="active">About</a>
+        <a routerLink="/projects" routerLinkActive="active">Projects</a>
+        <a routerLink="/contact" routerLinkActive="active">Contact</a>
+        <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+          <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
+      </div>
+      <button class="mobile-menu-btn" (click)="menuOpen = !menuOpen">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="mobile-nav" [class.open]="menuOpen">
+      <a routerLink="/" (click)="menuOpen = false">Home</a>
+      <a routerLink="/about" (click)="menuOpen = false">About</a>
+      <a routerLink="/projects" (click)="menuOpen = false">Projects</a>
+      <a routerLink="/contact" (click)="menuOpen = false">Contact</a>
+      <button class="theme-toggle" (click)="toggleTheme()">
+        <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+    </div>
+  </nav>

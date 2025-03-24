@@ -1,16 +1,36 @@
-import { TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-import { ThemeService } from './theme.service';
+@Injectable({
+  providedIn: 'root'
+})
+export class ThemeService {
+  private isDarkMode = new BehaviorSubject<boolean>(false);
+  currentTheme = this.isDarkMode.asObservable();
 
-describe('ThemeService', () => {
-  let service: ThemeService;
+  constructor() {
+    // Check if user has a saved preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      this.isDarkMode.next(savedTheme === 'dark');
+    } else {
+      // Check if user prefers dark mode
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.isDarkMode.next(prefersDark);
+    }
+    
+    // Apply theme on init
+    this.applyTheme();
+  }
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ThemeService);
-  });
+  toggleTheme() {
+    this.isDarkMode.next(!this.isDarkMode.value);
+    this.applyTheme();
+  }
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+  private applyTheme() {
+    const isDark = this.isDarkMode.value;
+    document.body.classList.toggle('dark-theme', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+}
